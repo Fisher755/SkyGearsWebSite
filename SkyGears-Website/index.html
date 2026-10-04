@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1119">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://skygears.ru/">
+  <meta name="description" content="SkyGears — Minecraft 1.21.1 NeoForge сервер про инженерию, воздушные корабли, Create и приключения среди облаков.">
+  <meta property="og:title" content="SkyGears — воздушная индустриальная империя">
+  <meta property="og:description" content="Строй механизмы, поднимай в небо корабли и развивай свою империю на SkyGears.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://skygears.ru/">
+  <meta property="og:image" content="https://skygears.ru/assets/background.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SkyGears — Minecraft 1.21.1 NeoForge">
+  <meta name="twitter:description" content="Инженерия Create, воздушные корабли и живой мир SkyGears.">
+  <meta name="twitter:image" content="https://skygears.ru/assets/background.webp">
+  <title>SkyGears — Minecraft 1.21.1 NeoForge</title>
+  <link rel="icon" href="assets/skygears.ico">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="styles.css?v=350">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "SkyGears",
+    "url": "https://skygears.ru/",
+    "description": "Minecraft 1.21.1 NeoForge проект с Create, воздушными кораблями и инженерией.",
+    "sameAs": [
+      "https://discord.gg/nk5Z2vS2nE",
+      "https://vk.ru/skygears",
+      "https://www.tiktok.com/@skygears1"
+    ]
+  }
+  </script>
+  <script src="config.js?v=350" defer></script>
+  <script src="script.js?v=350" defer></script>
+</head>
+<body>
+  <div class="page-loader" id="page-loader">
+    <div class="loader-inner">
+      <div class="loader-gear">⚙</div>
+      <div class="loader-bar"><span></span></div>
+      <p>Загрузка SkyGears…</p>
+    </div>
+  </div>
+  <canvas id="particles" class="particles-canvas" aria-hidden="true"></canvas>
+
+  <header class="topbar" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" id="brand-top" aria-label="SkyGears — наверх">
+        <span class="brand-gear">⚙</span>
+        <span class="brand-text"><b>SKY</b>GEARS</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Основная навигация">
+        <a href="#about">О проекте</a>
+        <a href="#features">Возможности</a>
+        <a href="#news">Новости</a>
+        <a href="#gallery">Галерея</a>
+        <a href="#start">Как начать</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="button button-small button-outline" data-discord-link target="_blank" rel="noopener noreferrer">Discord</a>
+        <button class="menu-button" id="menu-button" type="button" aria-label="Открыть меню" aria-expanded="false">☰</button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Мобильная навигация">
+      <a href="#about">О проекте</a>
+      <a href="#features">Возможности</a>
+      <a href="#news">Новости</a>
+      <a href="#gallery">Галерея</a>
+      <a href="#start">Как начать</a>
+      <a data-discord-link target="_blank" rel="noopener noreferrer">Discord</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="pulse-dot" id="hero-status-dot"></span><span id="hero-status-text">Проверяем сервер…</span></div>
+          <p class="kicker">MINECRAFT 1.21.1 • NEOFORGE</p>
+          <h1>Механизмы.<br><span>Небо.</span> Свобода.</h1>
+          <p class="hero-lead">SkyGears — индустриальный Minecraft-проект с RP, инженерией Create и воздушными кораблями. Построй мастерскую, собери экипаж и подними собственную машину в небо.</p>
+          <div class="hero-buttons">
+            <button class="button button-primary" id="download-launcher">Скачать лаунчер</button>
+            <button class="button button-secondary" id="copy-server">Скопировать IP</button>
+          </div>
+          <div class="server-address"><span>Сервер</span><strong id="server-address">skygears.mcmem.ru</strong></div>
+        </div>
+
+        <aside class="hero-panel reveal" aria-label="Статус SkyGears">
+          <img src="assets/logo.webp" alt="SkyGears" class="hero-logo">
+          <div class="status-card">
+            <div class="status-head">
+              <span>Статус сервера</span>
+              <div class="status-actions">
+                <button class="status-refresh" id="status-refresh" type="button" aria-label="Обновить статус" title="Обновить статус">↻</button>
+                <span class="status-pill loading" id="status-pill">Проверка</span>
+              </div>
+            </div>
+            <div class="status-grid">
+              <div><small>Игроки</small><strong id="players-value">—</strong></div>
+              <div><small>Версия</small><strong id="version-value">1.21.1</strong></div>
+              <div><small>Ядро</small><strong id="loader-value">NeoForge</strong></div>
+              <div><small>Узел</small><strong id="node-value">—</strong></div>
+            </div>
+            <p class="status-note" id="status-note">Получаем данные через SkyGears API…</p>
+            <div class="status-meta">
+              <span class="live-mark"><i></i> LIVE</span>
+              <span id="status-updated" aria-live="polite">Ожидаем данные…</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+      <a class="hero-scroll" href="#about" id="scroll-down" aria-label="Прокрутить вниз к разделу О проекте">
+        Прокрути вниз <span>↓</span>
+      </a>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container two-col">
+        <div class="reveal">
+          <p class="section-label">Добро пожаловать на борт</p>
+          <h2>Инженерия нового поколения</h2>
+          <p class="section-text">SkyGears объединяет техническую свободу Create, атмосферу воздушной индустрии и живое комьюнити. Здесь можно строить производство, создавать торговые маршруты, развивать поселения и участвовать в истории мира.</p>
+          <p class="section-text">Мы хотим, чтобы прогресс был не только про цифры: корабли, базы и фабрики должны становиться частью общей истории сервера.</p>
+          <div class="mini-stats">
+            <div><b>∞</b><span>Автоматизация</span></div>
+            <div><b>✈</b><span>Воздушный флот</span></div>
+            <div><b>⌁</b><span>Исследование</span></div>
+          </div>
+        </div>
+        <figure class="image-frame reveal">
+          <img src="assets/about-airship.webp" alt="Воздушный корабль SkyGears" loading="lazy">
+          <figcaption><span>⚙</span> Create • Aeronautics mood</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="features">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-label">Возможности</p>
+          <h2>Почему SkyGears?</h2>
+          <p>Не набор случайных модов, а пространство для долгих проектов, RP и технического творчества.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card reveal"><span>⚙</span><h3>RP и фракции</h3><p>Инженер, торговец, лидер поселения или одиночка — выбирай собственную роль и вливайся в экономику мира.</p></article>
+          <article class="feature-card reveal"><span>✈</span><h3>Воздушные машины</h3><p>Строй дирижабли, самолёты и летающие платформы вокруг механик Create и Aeronautics.</p></article>
+          <article class="feature-card reveal"><span>⌬</span><h3>Технический прогресс</h3><p>Автоматизация, кинетика, логистика и крупные производственные линии с понятной целью.</p></article>
+          <article class="feature-card reveal"><span>◈</span><h3>Экономика игроков</h3><p>Торговля, редкие ресурсы и ценность вещей формируются активностью самих игроков.</p></article>
+          <article class="feature-card reveal"><span>★</span><h3>Ивенты</h3><p>События, мини-игры и конкурсы построек, чтобы жизнь сервера не превращалась в бесконечный гринд.</p></article>
+          <article class="feature-card reveal"><span>♟</span><h3>Живое сообщество</h3><p>Команда проекта и Discord помогают новичкам, собирают обратную связь и развивают сезон вместе с игроками.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="news">
+      <div class="container">
+        <div class="section-heading section-heading-row reveal">
+          <div>
+            <p class="section-label">Новости проекта</p>
+            <h2>С борта SkyGears</h2>
+          </div>
+          <a class="text-link" data-discord-link target="_blank" rel="noopener noreferrer">Открыть Discord →</a>
+        </div>
+        <div class="news-grid" id="news-grid" aria-live="polite">
+          <article class="news-card skeleton"><div></div><div></div><div></div></article>
+          <article class="news-card skeleton"><div></div><div></div><div></div></article>
+          <article class="news-card skeleton"><div></div><div></div><div></div></article>
+        </div>
+        <div class="news-meta">
+          <p class="api-hint" id="news-hint">Новости загружаются из канала Discord через SkyGears API.</p>
+          <button class="text-button" id="news-refresh" type="button">Обновить новости ↻</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="gallery">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-label">Галерея</p>
+          <h2>Шедевры небес</h2>
+          <p>Нажми на изображение, чтобы открыть его крупнее.</p>
+        </div>
+        <div class="gallery-grid">
+          <button class="gallery-item reveal" data-lightbox="assets/gallery-airship.webp" aria-label="Открыть скриншот воздушного корабля">
+            <img src="assets/gallery-airship.webp" alt="Воздушный корабль" loading="lazy"><span>Воздушный флот</span>
+          </button>
+          <button class="gallery-item reveal" data-lightbox="assets/gallery-build.webp" aria-label="Открыть скриншот построек">
+            <img src="assets/gallery-build.webp" alt="Постройки игроков" loading="lazy"><span>Мир игроков</span>
+          </button>
+          <button class="gallery-item reveal" data-lightbox="assets/gallery-machinery.webp" aria-label="Открыть скриншот механизмов">
+            <img src="assets/gallery-machinery.webp" alt="Механизмы Create" loading="lazy"><span>Сложная кинематика</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="start">
+      <div class="container start-layout">
+        <div class="reveal">
+          <p class="section-label">Старт за несколько минут</p>
+          <h2>Как начать играть</h2>
+          <p class="section-text">Теперь ручная установка Minecraft и NeoForge не нужна: этим занимается наш лаунчер.</p>
+          <ol class="steps">
+            <li><span>01</span><div><h3>Скачай SkyGears Launcher</h3><p>Установи или распакуй актуальную Windows-версию лаунчера.</p></div></li>
+            <li><span>02</span><div><h3>Введи игровой ник</h3><p>Лаунчер создаст локальный профиль и подготовит игровую папку.</p></div></li>
+            <li><span>03</span><div><h3>Обнови сборку</h3><p>Нажми «Обновить сборку», чтобы получить актуальные моды и конфигурацию.</p></div></li>
+            <li><span>04</span><div><h3>Нажми «Играть»</h3><p>Лаунчер запустит Minecraft 1.21.1 NeoForge и подключит тебя к SkyGears.</p></div></li>
+          </ol>
+          <div class="inline-actions">
+            <button class="button button-primary" id="download-launcher-secondary">Скачать лаунчер</button>
+            <button class="button button-secondary" id="download-pack">Сборка вручную</button>
+          </div>
+        </div>
+
+        <aside class="join-card reveal">
+          <img src="assets/logo.webp" alt="SkyGears" loading="lazy">
+          <h3>Хочешь на проект?</h3>
+          <p>Подай заявку. Ответы отправляются через наш Worker в закрытый канал команды — без публикации webhook-адреса на сайте.</p>
+          <button class="button button-primary" id="open-application">Подать заявку</button>
+          <a class="button button-secondary" data-discord-link target="_blank" rel="noopener noreferrer">Вступить в Discord</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="stats-strip" aria-label="Параметры сервера">
+      <div class="container stats-grid">
+        <div><strong id="stat-online">—</strong><span>Игроков онлайн</span></div>
+        <div><strong id="stat-max">—</strong><span>Слотов</span></div>
+        <div><strong>1.21.1</strong><span>Minecraft</span></div>
+        <div><strong>21.1.230</strong><span>NeoForge клиента</span></div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="team">
+      <div class="container">
+        <div class="section-heading reveal"><p class="section-label">Команда</p><h2>Люди за механизмами</h2></div>
+        <div class="team-grid">
+          <article class="team-card reveal"><div>👑</div><h3>JhoanDorri</h3><p>Основатель • дизайн и развитие мира</p></article>
+          <article class="team-card reveal"><div>🔧</div><h3>Aram_755</h3><p>Основатель • разработка и техническая часть</p></article>
+          <article class="team-card reveal"><div>🛡</div><h3>Команда SkyGears</h3><p>Модерация • помощь игрокам • ивенты</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container narrow">
+        <div class="section-heading reveal"><p class="section-label">FAQ</p><h2>Частые вопросы</h2></div>
+        <div class="faq-list">
+          <details class="reveal"><summary>Нужно ли вручную ставить NeoForge?</summary><p>Нет. Актуальный SkyGears Launcher устанавливает Minecraft и NeoForge сам.</p></details>
+          <details class="reveal"><summary>Где взять актуальную сборку?</summary><p>Основной вариант — обновление через лаунчер. Ручную сборку мы оставили как запасной способ.</p></details>
+          <details class="reveal"><summary>Что делать, если сервер или API недоступен?</summary><p>Лаунчер и сайт покажут состояние API. Если проблема длительная, проверь новости в Discord.</p></details>
+          <details class="reveal"><summary>Можно ли присылать пароль в заявке?</summary><p>Нет. Никогда не отправляй пароль Minecraft, Discord или панели. Для заявки он не нужен.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div><a class="brand" href="#top"><span class="brand-gear">⚙</span><span><b>SKY</b>GEARS</span></a><p>Воздушная индустриальная история, которую строят сами игроки.</p></div>
+      <div><strong>Навигация</strong><a href="#news">Новости</a><a href="#start">Начать играть</a><a href="#gallery">Галерея</a></div>
+      <div><strong>Сообщество</strong><a data-discord-link target="_blank" rel="noopener noreferrer">Discord</a><a href="https://vk.ru/skygears" target="_blank" rel="noopener noreferrer">VK</a><a href="https://www.tiktok.com/@skygears1" target="_blank" rel="noopener noreferrer">TikTok</a></div>
+      <div><strong>Сервер</strong><button class="footer-copy" id="footer-copy-server">skygears.mcmem.ru</button><span class="footer-state" id="footer-state">Проверка…</span></div>
+    </div>
+    <div class="container footer-bottom"><span>© 2026 SkyGears</span><span>Не является официальным продуктом Mojang или Microsoft.</span></div>
+  </footer>
+
+  <div class="modal" id="lightbox" aria-hidden="true">
+    <button class="modal-close" data-close-lightbox aria-label="Закрыть">×</button>
+    <img id="lightbox-image" alt="Скриншот SkyGears">
+  </div>
+
+  <div class="modal" id="application-modal" aria-hidden="true">
+    <div class="modal-card application-card" role="dialog" aria-modal="true" aria-labelledby="application-title">
+      <button class="modal-close inside" id="close-application" type="button" aria-label="Закрыть">×</button>
+      <p class="section-label">Заявка на проект</p>
+      <h2 id="application-title">Добро пожаловать на SkyGears</h2>
+      <p class="modal-intro">Проходка: <strong>200 ₽ / месяц</strong>. Перед отправкой вступи в Discord SkyGears и разреши личные сообщения от участников сервера — бот пришлёт подтверждение и итог по заявке автоматически. Не отправляй пароли и платёжные данные.</p>
+      <form id="application-form">
+        <div class="form-grid">
+          <label>Ник Minecraft *<input name="nickname" autocomplete="off" maxlength="32" required></label>
+          <label>Возраст *<input name="age" type="number" min="10" max="99" required></label>
+          <label class="full">Ссылка на профиль Discord *
+            <input name="discordProfile" type="url" maxlength="120" inputmode="url" placeholder="https://discord.com/users/123456789012345678" required>
+            <small class="field-hint">Нужна ссылка вида <b>discord.com/users/ID</b>. Она нужна боту, чтобы автоматически сообщить результат заявки.</small>
+          </label>
+          <label class="full">Опыт на приватных серверах<textarea name="experience" maxlength="600" rows="3"></textarea></label>
+          <label class="full">Сколько времени готов уделять проекту?<input name="playtime" maxlength="200"></label>
+          <label class="full">Что хочешь реализовать на SkyGears?<textarea name="plans" maxlength="800" rows="3"></textarea></label>
+          <label class="full">Есть ли YouTube / Twitch? Планируешь контент?<input name="content" maxlength="300"></label>
+          <label class="full">Откуда узнал о проекте?<input name="source" maxlength="300"></label>
+          <label class="full">Почему выбрал SkyGears?<textarea name="reason" maxlength="800" rows="4"></textarea></label>
+          <label class="honeypot" aria-hidden="true">Сайт<input name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <button class="button button-primary full-width" type="submit" id="application-submit">Отправить заявку</button>
+        <p class="form-status" id="application-status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
