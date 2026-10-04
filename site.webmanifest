@@ -1,0 +1,9 @@
+{
+  "name": "SkyGears",
+  "short_name": "SkyGears",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080d13",
+  "theme_color": "#0b1119",
+  "icons": []
+}
